@@ -1,5 +1,5 @@
 from node import Node
-
+import unittest
 
 class Tree:
     """ Tree class for binary tree """
@@ -62,16 +62,19 @@ class Tree:
             return self._find(data, node.right)
 
     def deleteTree(self):
-        # TODO 1
+        # TODO 1"
+        """Method to delete the tree"""
         self.root = None
 
     def printTree(self):
         # TODO 1
+        """Method for printing the tree"""
         if self.root is not None:
             self._printInorderTree(self.root)
 
     def _printInorderTree(self, node):
         # TODO 1
+        """Method for printing the tree in order"""
         if node is not None:
             self._printInorderTree(node.left)
             print(str(node.data) + ' ')
@@ -79,10 +82,28 @@ class Tree:
 
     def _printPreorderTree(self, node):
         # TODO 2
-        pass
+        if node is not None:
+            print(str(node.data) + ' ')
+            self._printPreorderTree(node.left)
+            self._printPreorderTree(node.right)
+            
 
     def _printPostorderTree(self, node):
         # TODO 2
-        pass
+        if node is not None:
+            self._printPreorderTree(node.left)
+            self._printPreorderTree(node.right)
+            print(str(node.data) + ' ')
 
 
+def test_find1():
+    tree = Tree()
+    tree.add(3)
+    assert tree._find(3, tree.root) == tree.root
+
+def test_find2():
+    tree = Tree()
+    tree2 = Tree()
+    tree.add(3)
+    tree2.add(3)
+    assert not tree._find(3, tree.root) == tree2.root    
